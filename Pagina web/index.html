@@ -7,6 +7,12 @@
   <meta name="description" content="SalaKoala ofrece un espacio mágico para fiestas y cumpleaños infantiles en Fuenlabrada. Megaparque, cama elástica, zona gamer y diversión asegurada. ¡Reserva ya!">
   <link rel="icon" type="image/png" href="img/logo.png" />
   <link rel="stylesheet" href="modern.css" />
+  <!-- FullCalendar CSS -->
+<link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet" />
+
+<!-- FullCalendar JS -->
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+
 </head>
 <body>
 
@@ -152,61 +158,57 @@
       <tbody>
         <tr>
           <td data-label="Horario">Mañana (10-14h)</td>
-          <td data-label="Lunes a Miércoles">60€</td>
-          <td data-label="Jueves y Viernes">60€</td>
-          <td data-label="Fines de semana">130€</td>
+          <td data-label="Lunes a Jueves">70€</td>
+          <td data-label="Viernes">80€</td>
+          <td data-label="Fines de semana">150€</td>
         </tr>
         <tr>
           <td data-label="Horario">Tarde (17-21h)</td>
-          <td data-label="Lunes a Miércoles">100€</td>
-          <td data-label="Jueves y Viernes">130€</td>
-          <td data-label="Fines de semana">160€</td>
+          <td data-label="Lunes a Jueves">100€</td>
+          <td data-label="Viernes">150€</td>
+          <td data-label="Fines de semana">180€</td>
         </tr>
         <tr>
           <td data-label="Horario">Día completo</td>
-          <td data-label="Lunes a Miércoles">130€</td>
-          <td data-label="Jueves y Viernes">160€</td>
-          <td data-label="Fines de semana">220€</td>
-        </tr>
-        <tr>
-          <td data-label="Horario">Hora extra</td>
-          <td data-label="Lunes a Miércoles" colspan="3">+25€</td>
+          <td data-label="Lunes a Miércoles">140€</td>
+          <td data-label="Jueves y Viernes">200€</td>
+          <td data-label="Fines de semana">240€</td>
         </tr>
       </tbody>
     </table>
+
+    <!-- Extras y condiciones -->
+    <div class="extras-tarifas animado fade-in-up" style="margin-top: 2rem;">
+      <ul style="list-style: none; padding-left: 0; font-size: 1rem;">
+        <li>📌 <strong>Reserva anticipada:</strong> 50 % del importe total</li>
+        <li>🔒 <strong>Fianza reembolsable:</strong> 50 €</li>
+        <li>⏰ <strong>Horas extras:</strong> 25 €/hora</li>
+        <li>⏳ <strong>Extensión de horario:</strong> sujeta a disponibilidad</li>
+        <li>🧼 <strong>Servicio de limpieza:</strong> 30 € adicionales</li>
+        <li>🎁 <strong>Descuento por múltiples reservas:</strong> 10 %</li>
+        <li>⏱️ <strong>Entrada anticipada:</strong> cortesía de 30 minutos</li>
+      </ul>
+    </div>
   </div>
 </section>
 
 
-  <!-- 📅 RESERVAS -->
-  <section id="reservas" class="animado zoom-in">
+<!-- 📅 RESERVAS -->
+<section id="reservas" class="animado fade-up">
   <div class="container">
-    <h2 class="animado fade-up">Reservas</h2>
-    <p class="lead animado fade-in-up">Consulta disponibilidad y planifica tu fiesta.</p>
-
-    <div class="calendar animado fade-in-up">
-      <div class="calendar-header">
-        <button id="prevMonth">&lt;</button>
-        <h3 id="monthYear"></h3>
-        <button id="nextMonth">&gt;</button>
-      </div>
-      <div class="calendar-grid">
-        <!-- Días se generan dinámicamente con JS -->
-      </div>
-    </div>
-
-    <div class="calendar-legend animado fade-in-up">
-      <span><div class="legend-box full"></div> Día completo</span>
-      <span><div class="legend-box half"></div> Medio día</span>
-      <span><div class="legend-box available"></div> Disponible</span>
-    </div>
+    <h2>Calendario de Reservas</h2>
+    <div id="calendar"></div>
+    <div class="calendar-legend">
+  <span><div class="legend-box libre"></div> Libre</span>
+  <span><div class="legend-box media"></div> Ocupado medio día</span>
+  <span><div class="legend-box ocupado"></div> Ocupado completo</span>
+</div>
 
     <a href="https://wa.me/34643522826" class="btn-gradient animado bounce-in">
       <i class="fa-brands fa-whatsapp"></i> Escríbenos por WhatsApp
     </a>
   </div>
 </section>
-
 
   <!-- ☎️ CONTACTO -->
   <section id="contacto" class="animado slide-right">

@@ -383,115 +383,137 @@ tbody tr:nth-child(even) {
 /* =========================
    CALENDARIO
 ========================= */
-.calendar {
-  margin: 2rem auto;
-  max-width: 700px;
-  width: 100%;
-  background: #f0ece3;
-  border-radius: 15px;
+/* 📅 Calendario de Reservas */
+#calendar {
+  max-width: 900px;
+  margin: 3rem auto;
   padding: 20px;
-  box-sizing: border-box;
+  background: #f0ece3;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  font-family: 'Nunito', sans-serif;
 }
 
-.calendar-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 10px;
+/* 🗓️ Título del mes */
+.fc-toolbar-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #7da27d;
   margin-bottom: 1rem;
 }
 
-.calendar-header h3 {
-  margin: 0;
-  color: #7da27d;
-  font-size: 1.5rem;
-}
-
-.calendar-header button {
-  background: #7da27d;
-  color: #fff;
-  border: none;
-  padding: 8px 15px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.calendar-header button:hover {
-  background: #a3c1a8;
-}
-
-.calendar-grid {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 5px;
-}
-
-.calendar-grid .day, .calendar-grid .day-name {
-  padding: 12px 0;
-  border-radius: 10px;
+/* 🎛️ Botones de navegación */
+.fc-button {
+  background: #7da27d !important;
+  border: none !important;
+  color: #fff !important;
+  padding: 8px 16px !important;
+  border-radius: 10px !important;
   font-weight: 600;
+  transition: background 0.3s ease;
+}
+
+.fc-button:hover {
+  background: #a3c1a8 !important;
+}
+
+/* 📆 Día normal */
+.fc-daygrid-day-number {
+  color: #4b4b4b;
+  font-weight: 600;
+}
+
+.fc-daygrid-day:hover {
+  background-color: #e3e0d6;
   cursor: pointer;
-  text-align: center;
-  transition: transform 0.2s;
+  transition: background 0.3s ease;
 }
 
-.calendar-grid .day:hover {
-  transform: scale(1.05);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+/* 🟩 Día libre */
+.fc-event.libre {
+  background-color: #cde3d1 !important;
+  border-color: #cde3d1 !important;
+  color: #4b4b4b !important;
+  font-weight: 600;
 }
 
-.day-name {
-  font-weight: 700;
-  color: #5c4a3e;
+/* 🟧 Ocupado medio día */
+.fc-event.media {
+  background-color: #f5d9b0 !important;
+  border-color: #f5d9b0 !important;
+  color: #4b4b4b !important;
+  font-weight: 600;
 }
 
-.day.available { background: #a3c1a8; color: #fff; }
-.day.half { background: #d9cbb5; color: #4b4b4b; }
-.day.full { background: #c94c4c; color: #fff; }
-.day.selected { outline: 3px solid #7da27d; font-weight: 800; }
+/* 🟥 Ocupado completo */
+.fc-event.ocupado {
+  background-color: #f8bcbc !important;
+  border-color: #f8bcbc !important;
+  color: #4b4b4b !important;
+  font-weight: 600;
+}
 
+/* 📱 Responsive */
+@media (max-width: 768px) {
+  #calendar {
+    padding: 15px;
+  }
+
+  .fc-toolbar-title {
+    font-size: 1.6rem;
+  }
+
+  .fc-button {
+    font-size: 0.9rem;
+    padding: 6px 12px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .fc-toolbar-title {
+    font-size: 1.4rem;
+  }
+
+  .fc-button {
+    font-size: 0.85rem;
+    padding: 5px 10px !important;
+  }
+}
+
+/* 🧭 Leyenda visual del calendario */
 .calendar-legend {
   display: flex;
   justify-content: center;
   gap: 2rem;
-  margin: 1.5rem 0 3rem;
+  margin-top: 2rem;
   flex-wrap: wrap;
-  font-size: 0.9rem;
+  font-size: 1rem;
+  color: #4b4b4b;
+}
+
+.calendar-legend span {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .legend-box {
   width: 20px;
   height: 20px;
   border-radius: 5px;
-  display: inline-block;
-  margin-right: 0.5rem;
 }
 
-.legend-box.available { background: #a3c1a8; }
-.legend-box.half { background: #d5a250; }
-.legend-box.full { background: #c94c4c; }
-
-/* ================= RESPONSIVE ================= */
-@media (max-width: 768px) {
-  .calendar-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-  .calendar-header h3 { font-size: 1.3rem; }
-  .calendar-header button { padding: 6px 10px; font-size: 0.9rem; }
+.legend-box.libre {
+  background-color: #cde3d1;
 }
 
-@media (max-width: 480px) {
-  .calendar-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .calendar-grid .day, .calendar-grid .day-name {
-    padding: 10px 0;
-    font-size: 0.85rem;
-  }
+.legend-box.media {
+  background-color: #f5d9b0;
 }
 
+.legend-box.ocupado {
+  background-color: #f8bcbc;
+}
 
 
 /* =========================

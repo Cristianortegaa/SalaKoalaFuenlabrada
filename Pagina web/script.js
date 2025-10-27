@@ -1,131 +1,58 @@
 // ======================
-// VARIABLES CALENDARIO
+// FULLCALENDAR RESERVAS
 // ======================
-const calendarGrid = document.querySelector(".calendar-grid");
-const monthYear = document.getElementById("monthYear");
-const prevMonthBtn = document.getElementById("prevMonth");
-const nextMonthBtn = document.getElementById("nextMonth");
+document.addEventListener('DOMContentLoaded', function () {
+  const calendarEl = document.getElementById('calendar');
 
-let today = new Date();
-let currentMonth = today.getMonth();
-let currentYear = today.getFullYear();
-let selectedDate = null;
+  const calendar = new FullCalendar.Calendar(calendarEl, {
+    initialView: 'dayGridMonth',
+    locale: 'es',
+    selectable: true,
+    headerToolbar: {
+      left: 'prev,next today',
+      center: 'title',
+      right: ''
+    },
+    dateClick: function (info) {
+      const estado = prompt("Estado del día:\n1 = Libre\n2 = Ocupado medio día\n3 = Ocupado completo");
 
-// Ejemplo de reservas / disponibilidad
-const availability = {
-  "2025-10-01": "available",
-  "2025-10-02": "half",
-  "2025-10-03": "full",
-  "2025-10-05": "full",
-  "2025-10-06": "half",
-  "2025-10-09": "full"
-};
+      let color = '';
+      let title = '';
+      let className = '';
 
-const dayNames = ["Lun","Mar","Mié","Jue","Vie","Sáb","Dom"];
-const monthNames = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
+      switch (estado) {
+        case '1':
+          color = '#cde3d1'; // verde
+          title = 'Libre';
+          className = 'libre';
+          break;
+        case '2':
+          color = '#f5d9b0'; // naranja
+          title = 'Ocupado medio día';
+          className = 'media';
+          break;
+        case '3':
+          color = '#f8bcbc'; // rojo
+          title = 'Ocupado completo';
+          className = 'ocupado';
+          break;
+        default:
+          return;
+      }
 
-// ======================
-// FUNCIONES AUXILIARES
-// ======================
-
-// Devuelve estado de disponibilidad de una fecha
-function getAvailability(dateStr) {
-  return availability[dateStr] || "available";
-}
-
-// Animación suave al cambiar mes
-function animateCalendarChange() {
-  calendarGrid.classList.add("fade");
-  setTimeout(() => calendarGrid.classList.remove("fade"), 300);
-}
-
-// Actualiza la leyenda dinámica
-function updateLegend(dateStr, estado) {
-  const legend = document.querySelector(".calendar-legend");
-  legend.innerHTML = `
-    <span><strong>${dateStr}</strong></span>
-    <span><div class="legend-box ${estado}"></div> ${estado === "full" ? "Día completo" : estado === "half" ? "Mitad de día" : "Disponible"}</span>
-  `;
-}
-
-// ======================
-// RENDER CALENDARIO
-// ======================
-function renderCalendar(month, year) {
-  calendarGrid.innerHTML = "";
-  animateCalendarChange();
-
-  // Nombres de los días
-  dayNames.forEach(day => {
-    const dayName = document.createElement("div");
-    dayName.classList.add("day-name");
-    dayName.textContent = day;
-    calendarGrid.appendChild(dayName);
+      calendar.addEvent({
+        title: title,
+        start: info.dateStr,
+        allDay: true,
+        backgroundColor: color,
+        borderColor: color,
+        className: className
+      });
+    }
   });
 
-  const firstDay = new Date(year, month, 1).getDay();
-  const lastDay = new Date(year, month + 1, 0).getDate();
-  const startDay = firstDay === 0 ? 6 : firstDay - 1; // Ajuste domingo = 6
-
-  // Espacios vacíos al inicio del mes
-  for (let i = 0; i < startDay; i++) {
-    const empty = document.createElement("div");
-    calendarGrid.appendChild(empty);
-  }
-
-  // Crear días del mes
-  for (let day = 1; day <= lastDay; day++) {
-    const dayCell = document.createElement("div");
-    dayCell.classList.add("day");
-
-    const dateStr = `${year}-${String(month+1).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
-    const estado = getAvailability(dateStr);
-
-    dayCell.classList.add(estado);
-    dayCell.textContent = day;
-
-    // Selección visual
-    dayCell.addEventListener("click", () => {
-      document.querySelectorAll(".day.selected").forEach(el => el.classList.remove("selected"));
-      dayCell.classList.add("selected");
-      selectedDate = dateStr;
-      updateLegend(dateStr, estado);
-    });
-
-    calendarGrid.appendChild(dayCell);
-  }
-
-  monthYear.textContent = `${monthNames[month]} ${year}`;
-}
-
-// ======================
-// NAVEGACIÓN MESES
-// ======================
-prevMonthBtn.addEventListener("click", () => {
-  const isCurrent = currentYear === today.getFullYear() && currentMonth === today.getMonth();
-  if (isCurrent) return; // Bloquea meses pasados
-
-  currentMonth--;
-  if (currentMonth < 0) {
-    currentMonth = 11;
-    currentYear--;
-  }
-  renderCalendar(currentMonth, currentYear);
+  calendar.render();
 });
-
-nextMonthBtn.addEventListener("click", () => {
-  currentMonth++;
-  if (currentMonth > 11) {
-    currentMonth = 0;
-    currentYear++;
-  }
-  renderCalendar(currentMonth, currentYear);
-});
-
-// ======================
-// INICIALIZAR CALENDARIO
-// ======================
-renderCalendar(currentMonth, currentYear);
 
 // ======================
 // ANIMACIÓN AL CARGAR
