@@ -437,18 +437,26 @@ tbody tr:nth-child(even) {
   font-weight: 600;
 }
 
-/* 🟧 Ocupado medio día */
-.fc-event.media {
-  background-color: #f5d9b0 !important;
-  border-color: #f5d9b0 !important;
+/* 🟨 Ocupado mañana */
+.fc-event.mañana {
+  background-color: #f5d96e !important;
+  border-color: #f5d96e !important;
+  color: #4b4b4b !important;
+  font-weight: 600;
+}
+
+/* 🟧 Ocupado tarde */
+.fc-event.tarde {
+  background-color: #f5a86e !important;
+  border-color: #f5a86e !important;
   color: #4b4b4b !important;
   font-weight: 600;
 }
 
 /* 🟥 Ocupado completo */
 .fc-event.ocupado {
-  background-color: #f8bcbc !important;
-  border-color: #f8bcbc !important;
+  background-color: #ff5353 !important;
+  border-color: #ff5353 !important;
   color: #4b4b4b !important;
   font-weight: 600;
 }
@@ -504,16 +512,21 @@ tbody tr:nth-child(even) {
 }
 
 .legend-box.libre {
-  background-color: #cde3d1;
+  background-color: #73ff8d;
 }
 
-.legend-box.media {
-  background-color: #f5d9b0;
+.legend-box.mañana {
+  background-color: #ffd941;
+}
+
+.legend-box.tarde {
+  background-color: #fb913f;
 }
 
 .legend-box.ocupado {
-  background-color: #f8bcbc;
+  background-color: #ff5353;
 }
+
 
 
 /* =========================
