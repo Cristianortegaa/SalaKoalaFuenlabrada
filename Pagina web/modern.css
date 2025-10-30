@@ -381,9 +381,10 @@ tbody tr:nth-child(even) {
 
 
 /* =========================
-   CALENDARIO
+   CALENDARIO DE RESERVAS
 ========================= */
-/* 📅 Calendario de Reservas */
+
+/* 📅 Contenedor principal */
 #calendar {
   max-width: 900px;
   margin: 3rem auto;
@@ -400,6 +401,7 @@ tbody tr:nth-child(even) {
   font-weight: 700;
   color: #7da27d;
   margin-bottom: 1rem;
+  text-align: center;
 }
 
 /* 🎛️ Botones de navegación */
@@ -455,10 +457,83 @@ tbody tr:nth-child(even) {
 
 /* 🟥 Ocupado completo */
 .fc-event.ocupado {
-  background-color: #ff5353 !important;
-  border-color: #ff5353 !important;
+  background-color: #f8bcbc !important;
+  border-color: #f8bcbc !important;
   color: #4b4b4b !important;
   font-weight: 600;
+}
+
+/* 🧭 Leyenda visual */
+.calendar-legend {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+  font-size: 1rem;
+  color: #4b4b4b;
+  text-align: center;
+}
+
+.calendar-legend span {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.legend-box {
+  width: 20px;
+  height: 20px;
+  border-radius: 5px;
+}
+
+.legend-box.libre {
+  background-color: #5cfb79;
+}
+
+.legend-box.mañana {
+  background-color: #fdd949;
+}
+
+.legend-box.tarde {
+  background-color: #f9974c;
+}
+
+.legend-box.ocupado {
+  background-color: #f85d5d;
+}
+
+/* 📩 Botón de WhatsApp */
+.whatsapp-button {
+  display: block;
+  width: fit-content;
+  margin: 2rem auto;
+  padding: 12px 24px;
+  background: linear-gradient(90deg, #7da27d, #cde3d1);
+  color: #fff;
+  font-weight: 700;
+  font-size: 1rem;
+  border: none;
+  border-radius: 30px;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: background 0.3s ease;
+}
+
+.whatsapp-button:hover {
+  background: linear-gradient(90deg, #6c916c, #bcd4c1);
+  color: #fff;
+}
+
+/* 🧾 Pie de página */
+.footer {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #7da27d;
+  margin-top: 3rem;
+  padding-bottom: 2rem;
+  font-family: 'Nunito', sans-serif;
 }
 
 /* 📱 Responsive */
@@ -475,6 +550,16 @@ tbody tr:nth-child(even) {
     font-size: 0.9rem;
     padding: 6px 12px !important;
   }
+
+  .calendar-legend {
+    gap: 1rem;
+    font-size: 0.95rem;
+  }
+
+  .legend-box {
+    width: 18px;
+    height: 18px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -486,45 +571,27 @@ tbody tr:nth-child(even) {
     font-size: 0.85rem;
     padding: 5px 10px !important;
   }
-}
 
-/* 🧭 Leyenda visual del calendario */
-.calendar-legend {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  margin-top: 2rem;
-  flex-wrap: wrap;
-  font-size: 1rem;
-  color: #4b4b4b;
-}
+  .calendar-legend {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+    margin-top: 1.5rem;
+  }
 
-.calendar-legend span {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
+  .legend-box {
+    width: 16px;
+    height: 16px;
+  }
 
-.legend-box {
-  width: 20px;
-  height: 20px;
-  border-radius: 5px;
-}
+  .whatsapp-button {
+    font-size: 0.95rem;
+    padding: 10px 20px;
+  }
 
-.legend-box.libre {
-  background-color: #73ff8d;
-}
-
-.legend-box.mañana {
-  background-color: #ffd941;
-}
-
-.legend-box.tarde {
-  background-color: #fb913f;
-}
-
-.legend-box.ocupado {
-  background-color: #ff5353;
+  .footer {
+    font-size: 0.85rem;
+  }
 }
 
 
