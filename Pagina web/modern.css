@@ -610,7 +610,7 @@ tbody tr:nth-child(even) {
   max-width: 400px;
 }
 
-.contacto-grid .info h4 {
+.contacto-grid .info strong {
   margin-top: 1rem;
   color: #7da27d;
 }
