@@ -72,3 +72,8 @@ const script = document.createElement('script');
 script.type = 'application/ld+json';
 script.text = JSON.stringify(jsonLd);
 document.head.appendChild(script);
+
+
+window.addEventListener('load', function() {
+  document.body.classList.add('loaded');
+});

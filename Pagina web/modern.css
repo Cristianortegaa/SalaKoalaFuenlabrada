@@ -173,18 +173,27 @@ body.loaded {
   justify-content: center;
 }
 
-.hero h1 {
+/* Importar fuentes correctas */
+@import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&family=Montserrat:wght@600;700&display=swap');
+
+/* Título manuscrito */
+.hero h1.titulo {
+  font-family: 'Shadows Into Light', cursive;
   font-size: 3rem;
-  margin-bottom: 1rem;
+  font-weight: 400;
+  color: #D39A63; /* tono del ejemplo */
+  text-align: center;
+  margin-bottom: 1.2rem;
 }
 
-.hero h1 span {
-  color: #7da27d;
-}
-
-.hero p {
-  font-size: 1.3rem;
-  margin-bottom: 2rem;
+/* Línea de servicios */
+.hero p.subtitulo {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-align: center;
+  color: #4b4b4b;
+  line-height: 2.2rem;
 }
 
 .hero img {
@@ -252,6 +261,7 @@ section h2 {
   flex-wrap: wrap;
   justify-content: center;
   gap: 2rem;
+  text-align: center;
 }
 
 .card {
@@ -260,7 +270,6 @@ section h2 {
   border-radius: 18px;
   text-align: center;
   width: 230px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
   box-shadow: 0 5px 15px rgba(0,0,0,0.05);
 }
 
@@ -268,7 +277,6 @@ section h2 {
   font-size: 3rem;
   margin-bottom: 0.8rem;
   color: #7da27d;
-  transition: color 0.3s ease;
 }
 
 .card h3 {
@@ -281,15 +289,6 @@ section h2 {
   font-size: 1rem;
   color: #5a5a5a;
   line-height: 1.3;
-}
-
-.card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
-}
-
-.card:hover i {
-  color: #a3c99c;
 }
 
 /* =========================
@@ -412,7 +411,7 @@ tbody tr:nth-child(even) {
   padding: 8px 16px !important;
   border-radius: 10px !important;
   font-weight: 600;
-  transition: background 0.3s ease;
+  transition: backround 0.3s ease;
 }
 
 .fc-button:hover {
@@ -676,6 +675,53 @@ footer .social a:hover {
   align-items: center;
   gap: 4px;
 }
+
+/* ===========================
+    NORMAS
+   ========================= */
+  
+   /* Sección Normas */
+.normas-section {
+  padding: 80px 20px;
+  background: #f7f7f3;
+  text-align: center;
+}
+
+.normas-titulo {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #7da27d;
+  margin-bottom: 2rem;
+}
+
+.normas-lista {
+  list-style: none;
+  padding: 0;
+  max-width: 900px;
+  margin: 0 auto;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #4b4b4b;
+}
+
+.normas-lista li {
+  margin-bottom: 1rem;
+  position: relative;
+  padding-left: 18px;
+}
+
+/* Punto decorativo tipo viñeta */
+.normas-lista li::before {
+  content: "•";
+  color: #7da27d;
+  font-weight: 900;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
 
 /* =========================
    MEDIA QUERIES
