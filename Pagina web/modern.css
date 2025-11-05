@@ -220,6 +220,25 @@ body.loaded {
   margin: 0 auto;
 }
 
+.btn-reserva {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, #6da06d, #83c07b);
+  color: white;
+  font-weight: bold;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 30px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.btn-reserva:hover {
+  background-color: #5e8b5e;
+}
+
+
 @media (max-width: 600px) {
   .hero img {
     max-width: 90%;
@@ -368,7 +387,7 @@ tbody tr:nth-child(even) {
   }
 
   thead {
-    display: none; /* ocultamos encabezado */
+    display: none; 
   }
 
   tbody tr {
@@ -391,6 +410,20 @@ tbody tr:nth-child(even) {
     color: #7da27d;
     display: block;
     margin-bottom: 5px;
+  }
+
+  .extras-tarifas {
+    text-align: center;
+    padding-left: 0 !important;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .extras-tarifas ul {
+    padding-left: 0 !important;
+    display: inline-block;
+    text-align: left;
   }
 }
 
