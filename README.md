@@ -1,7 +1,7 @@
 # 🐨 Sala Koala Fuenlabrada
 
-![Logo Sala Koala](<img width="819" height="684" alt="logo-salakoala-fiestas-infantiles-fuenlabrada" src="https://github.com/user-attachments/assets/a8c34692-3741-4a1a-9f02-9fc8eebb0abb" />
-)
+
+<img width="819" height="684" alt="logo-salakoala-fiestas-infantiles-fuenlabrada" src="https://github.com/user-attachments/assets/75729a92-2711-4229-b476-2f55707636d9" />
 
 **Sala Koala Fuenlabrada** es un espacio único dedicado a fiestas infantiles, cumpleaños, eventos familiares y celebraciones privadas.  
 Nuestra web está diseñada para ofrecer una experiencia clara, moderna y accesible a todos los visitantes, mostrando nuestros servicios, instalaciones y opciones de contacto.
@@ -61,7 +61,7 @@ El sitio está optimizado para ofrecer la mejor experiencia en **todos los dispo
 
 ---
 
-##👨‍💻 Autor
+## 👨‍💻 Autor
 
 👤 Cristian Ortega
 Desarrollador web y creador del sitio de Sala Koala Fuenlabrada.
@@ -73,9 +73,9 @@ Desarrollador web y creador del sitio de Sala Koala Fuenlabrada.
 
 📍 Fuenlabrada, Madrid – España
 
-##🪶 Licencia
+## 🪶 Licencia
 
 Este proyecto es de uso propio y no comercial.
 No está permitido su uso, copia o redistribución sin autorización expresa del autor.
 
-##⭐ Si te gusta este proyecto, dale una estrella en GitHub para apoyar el trabajo.
+## ⭐ Si te gusta este proyecto, dale una estrella en GitHub para apoyar el trabajo.
