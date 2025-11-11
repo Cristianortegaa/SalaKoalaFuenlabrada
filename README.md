@@ -1,6 +1,7 @@
 # 🐨 Sala Koala Fuenlabrada
 
-![Logo Sala Koala](https://salakoalafuenlabrada.es/img/logo/logo-salakoala-fiestas-infantiles-fuenlabrada-marron.png)
+![Logo Sala Koala](<img width="819" height="684" alt="logo-salakoala-fiestas-infantiles-fuenlabrada" src="https://github.com/user-attachments/assets/a8c34692-3741-4a1a-9f02-9fc8eebb0abb" />
+)
 
 **Sala Koala Fuenlabrada** es un espacio único dedicado a fiestas infantiles, cumpleaños, eventos familiares y celebraciones privadas.  
 Nuestra web está diseñada para ofrecer una experiencia clara, moderna y accesible a todos los visitantes, mostrando nuestros servicios, instalaciones y opciones de contacto.
