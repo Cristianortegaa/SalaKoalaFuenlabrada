@@ -508,7 +508,7 @@ tbody tr:nth-child(even) {
   }
 
   #calendar img {
-    max-width: 400px; /* tamaño más pequeño para móviles */
+    max-width: 350px; /* tamaño más pequeño para móviles */
   }
 }
 
