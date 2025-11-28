@@ -77,3 +77,26 @@ document.head.appendChild(script);
 window.addEventListener('load', function() {
   document.body.classList.add('loaded');
 });
+
+
+//Carrusel de imagenes 
+let currentIndex = 0;
+const slides = document.querySelectorAll(".calendar-slide");
+const dots = document.querySelectorAll(".dot");
+
+function showSlide(index) {
+  slides.forEach((slide, i) => {
+    slide.classList.toggle("active", i === index);
+    dots[i].classList.toggle("active", i === index);
+  });
+  currentIndex = index;
+}
+
+function changeSlide(n) {
+  let newIndex = (currentIndex + n + slides.length) % slides.length;
+  showSlide(newIndex);
+}
+
+function goToSlide(n) {
+  showSlide(n);
+}

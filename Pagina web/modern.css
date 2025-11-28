@@ -488,6 +488,60 @@ tbody tr:nth-child(even) {
   display: block;
   margin: 0 auto; 
 }
+.calendar-carousel {
+  position: relative;
+  max-width: 600px;
+  margin: auto;
+  overflow: hidden;
+}
+
+.calendar-slide {
+  display: none;
+  text-align: center;
+}
+
+.calendar-slide.active {
+  display: block;
+}
+
+.calendar-slide img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.calendar-prev, .calendar-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 28px;
+  color: black;
+  padding: 8px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.calendar-prev { left: 10px; }
+.calendar-next { right: 10px; }
+
+.calendar-dots {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.calendar-dots .dot {
+  height: 12px;
+  width: 12px;
+  margin: 0 4px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.calendar-dots .dot.active {
+  background-color: #000;
+}
+
 
 /* Tablets (ancho entre 768px y 1024px) */
 @media (max-width: 1024px) {
@@ -512,29 +566,6 @@ tbody tr:nth-child(even) {
   }
 }
 
-/* 🟨 Ocupado mañana */
-.fc-event.mañana {
-  background-color: #f5d96e !important;
-  border-color: #f5d96e !important;
-  color: #4b4b4b !important;
-  font-weight: 600;
-}
-
-/* 🟧 Ocupado tarde */
-.fc-event.tarde {
-  background-color: #f5a86e !important;
-  border-color: #f5a86e !important;
-  color: #4b4b4b !important;
-  font-weight: 600;
-}
-
-/* 🟥 Ocupado completo */
-.fc-event.ocupado {
-  background-color: #f8bcbc !important;
-  border-color: #f8bcbc !important;
-  color: #4b4b4b !important;
-  font-weight: 600;
-}
 
 /* 🧭 Leyenda visual */
 .calendar-legend {
@@ -560,17 +591,21 @@ tbody tr:nth-child(even) {
   border-radius: 5px;
 }
 
+/* 🟫🟩 Ocupado mañana (marrón arriba izquierda → verde abajo derecha) */
 .legend-box.mañana {
-  background-color: #fdd949;
+  background: linear-gradient(135deg, #B47B45 50%, #8BB27A 50%);
 }
 
+/* 🟩🟫 Ocupado tarde (verde arriba izquierda → marrón abajo derecha) */
 .legend-box.tarde {
-  background-color: #f9974c;
+  background: linear-gradient(135deg, #8BB27A 50%, #B47B45 50%);
 }
 
+/* 🟫 Ocupado completo (marrón sólido) */
 .legend-box.ocupado {
-  background-color: #f85d5d;
+  background-color: #B47B45;
 }
+
 
 /* 📩 Botón de WhatsApp */
 .whatsapp-button {

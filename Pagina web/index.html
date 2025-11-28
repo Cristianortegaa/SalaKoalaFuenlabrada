@@ -186,7 +186,6 @@
 <section id="tarifas" class="animado fade-up">
   <div class="container">
     <h2 class="animado fade-up">Tarifas</h2>
-    <p class="lead animado fade-in-up">Precios mágicos para cada ocasión.</p>
     <table class="animado zoom-in">
       <thead>
         <tr>
@@ -210,7 +209,7 @@
           <td data-label="Fines de semana">180€</td>
         </tr>
         <tr>
-          <td data-label="Horario">Día completo</td>
+          <td data-label="Horario">Día completo (11-21h)</td>
           <td data-label="Lunes a Jueves">140€</td>
           <td data-label="Viernes">200€</td>
           <td data-label="Fines de semana">240€</td>
@@ -245,11 +244,30 @@
 <section id="reservas" class="animado fade-up">
   <div class="container">
     <h2>Calendario de Reservas</h2>
-    <div id="calendar">
-      <img src="img/calendario/calendario-salakoala-fiesta-fuenlabrada.png"
-         alt="Logo de SalaKoala - Sala de fiestas infantiles en Fuenlabrada"
-         loading="lazy"/>
-    </div>
+    <div class="calendar-carousel">
+  <div class="calendar-slide active">
+    <img src="img/calendario/diciembre.png" alt="Diciembre 2025">
+  </div>
+  <div class="calendar-slide">
+    <img src="img/calendario/enero.png" alt="Enero 2026">
+  </div>
+  <div class="calendar-slide">
+    <img src="img/calendario/febrero.png" alt="Febrero 2026">
+  </div>
+
+  <!-- Flechas -->
+  <a class="calendar-prev" onclick="changeSlide(-1)">&#10094;</a>
+  <a class="calendar-next" onclick="changeSlide(1)">&#10095;</a>
+
+  <!-- Puntos -->
+  <div class="calendar-dots">
+    <span class="dot active" onclick="goToSlide(0)"></span>
+    <span class="dot" onclick="goToSlide(1)"></span>
+    <span class="dot" onclick="goToSlide(2)"></span>
+  </div>
+</div>
+
+
     <div class="calendar-legend">
       <span><div class="legend-box mañana"></div> Ocupado mañana</span>
       <span><div class="legend-box tarde"></div> Ocupado tarde</span>
