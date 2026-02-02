@@ -519,14 +519,14 @@ tbody tr:nth-child(even) {
 }
 
 #calendar img {
-  width: 600px; 
+  width: 100%; 
   height: auto; 
   display: block;
   margin: 0 auto; 
 }
 .calendar-carousel {
   position: relative;
-  max-width: 600px;
+  max-width: 1000px;
   margin: auto;
   overflow: hidden;
 }
@@ -534,6 +534,12 @@ tbody tr:nth-child(even) {
 .calendar-slide {
   display: none;
   text-align: center;
+  animation: fadeEffect 0.6s ease;
+}
+
+@keyframes fadeEffect {
+  from { opacity: 0.4; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
 }
 
 .calendar-slide.active {
@@ -586,7 +592,7 @@ tbody tr:nth-child(even) {
   }
 
   #calendar img {
-    max-width: 600px; /* reducimos la imagen */
+    max-width: 100%; /* reducimos la imagen */
   }
 }
 
@@ -594,11 +600,12 @@ tbody tr:nth-child(even) {
 @media (max-width: 767px) {
   #calendar {
     margin: 2rem auto;
-    padding: 10px;
+    padding: 5px;
   }
 
-  #calendar img {
-    max-width: 320px; /* tamaño más pequeño para móviles */
+  .calendar-carousel {
+    width: calc(100% + 30px);
+    margin-left: -15px;
   }
 }
 

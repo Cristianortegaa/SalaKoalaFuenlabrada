@@ -79,24 +79,66 @@ window.addEventListener('load', function() {
 });
 
 
-//Carrusel de imagenes 
-let currentIndex = 0;
-const slides = document.querySelectorAll(".calendar-slide");
-const dots = document.querySelectorAll(".dot");
+// ======================
+// CARRUSEL CALENDARIO
+// ======================
+document.addEventListener("DOMContentLoaded", () => {
+  const slides = document.querySelectorAll(".calendar-slide");
+  const dotsContainer = document.querySelector(".calendar-dots");
+  const prevBtn = document.querySelector(".calendar-prev");
+  const nextBtn = document.querySelector(".calendar-next");
+  const carouselContainer = document.querySelector('.calendar-carousel');
 
-function showSlide(index) {
-  slides.forEach((slide, i) => {
-    slide.classList.toggle("active", i === index);
-    dots[i].classList.toggle("active", i === index);
+  if (!slides.length || !dotsContainer) return;
+
+  let currentIndex = 0;
+
+  // 1. Generar puntos dinámicamente según la cantidad de imágenes
+  dotsContainer.innerHTML = "";
+  slides.forEach((_, index) => {
+    const dot = document.createElement("span");
+    dot.classList.add("dot");
+    if (index === 0) dot.classList.add("active");
+    dot.addEventListener("click", () => showSlide(index));
+    dotsContainer.appendChild(dot);
   });
-  currentIndex = index;
-}
 
-function changeSlide(n) {
-  let newIndex = (currentIndex + n + slides.length) % slides.length;
-  showSlide(newIndex);
-}
+  const dots = document.querySelectorAll(".dot");
 
-function goToSlide(n) {
-  showSlide(n);
-}
+  // 2. Función principal para mostrar slide
+  function showSlide(index) {
+    if (index >= slides.length) currentIndex = 0;
+    else if (index < 0) currentIndex = slides.length - 1;
+    else currentIndex = index;
+
+    slides.forEach((slide, i) => {
+      slide.classList.toggle("active", i === currentIndex);
+      dots[i].classList.toggle("active", i === currentIndex);
+    });
+  }
+
+  // 3. Event Listeners para flechas
+  if (prevBtn) prevBtn.addEventListener("click", () => showSlide(currentIndex - 1));
+  if (nextBtn) nextBtn.addEventListener("click", () => showSlide(currentIndex + 1));
+
+  // 4. Soporte táctil (Swipe) para móviles
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  if (carouselContainer) {
+    carouselContainer.addEventListener('touchstart', e => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, {passive: true});
+
+    carouselContainer.addEventListener('touchend', e => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    }, {passive: true});
+  }
+
+  function handleSwipe() {
+    const threshold = 50; 
+    if (touchEndX < touchStartX - threshold) showSlide(currentIndex + 1);
+    if (touchEndX > touchStartX + threshold) showSlide(currentIndex - 1);
+  }
+});
