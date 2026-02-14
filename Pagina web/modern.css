@@ -611,44 +611,17 @@ tbody tr:nth-child(even) {
 
 
 /* 🧭 Leyenda visual */
-.calendar-legend {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  margin-top: 2rem;
-  flex-wrap: wrap;
-  font-size: 1rem;
-  color: #4b4b4b;
-  text-align: center;
+.calendar-legend-img {
+  display: block;
+  max-width: 600px;
+  margin: 3rem auto;
+  height: auto;
+  border-radius: 15px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 5px;
+  background: #fff;
 }
-
-.calendar-legend span {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.legend-box {
-  width: 20px;
-  height: 20px;
-  border-radius: 5px;
-}
-
-/* 🟫🟩 Ocupado mañana (marrón arriba izquierda → verde abajo derecha) */
-.legend-box.mañana {
-  background: linear-gradient(135deg, #B47B45 50%, #8BB27A 50%);
-}
-
-/* 🟩🟫 Ocupado tarde (verde arriba izquierda → marrón abajo derecha) */
-.legend-box.tarde {
-  background: linear-gradient(135deg, #8BB27A 50%, #B47B45 50%);
-}
-
-/* 🟫 Ocupado completo (marrón sólido) */
-.legend-box.ocupado {
-  background-color: #B47B45;
-}
-
 
 /* 📩 Botón de WhatsApp */
 .whatsapp-button {
