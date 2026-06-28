@@ -264,21 +264,21 @@
   <div class="container">
     <h2>Calendario de Reservas</h2>
 
-    <div class="res-cal-wrapper">
-      <div class="res-cal-header">
-        <button class="res-cal-nav" id="res-prev">&#10094;</button>
-        <span id="res-month-title">Cargando...</span>
-        <button class="res-cal-nav" id="res-next">&#10095;</button>
+    <div class="res-cal-outer">
+      <button class="res-cal-arrow" id="res-prev">&#10094;</button>
+      <div class="res-cal-wrapper">
+        <div class="res-cal-month" id="res-month-title">Cargando...</div>
+        <div class="res-cal-grid" id="res-cal-grid">
+          <div class="res-cal-day-name">Lunes</div>
+          <div class="res-cal-day-name">Martes</div>
+          <div class="res-cal-day-name">Miércoles</div>
+          <div class="res-cal-day-name">Jueves</div>
+          <div class="res-cal-day-name">Viernes</div>
+          <div class="res-cal-day-name">Sábado</div>
+          <div class="res-cal-day-name">Domingo</div>
+        </div>
       </div>
-      <div class="res-cal-grid" id="res-cal-grid">
-        <div class="res-cal-day-name">Lun</div>
-        <div class="res-cal-day-name">Mar</div>
-        <div class="res-cal-day-name">Mié</div>
-        <div class="res-cal-day-name">Jue</div>
-        <div class="res-cal-day-name">Vie</div>
-        <div class="res-cal-day-name">Sáb</div>
-        <div class="res-cal-day-name">Dom</div>
-      </div>
+      <button class="res-cal-arrow" id="res-next">&#10095;</button>
     </div>
 
     <div class="res-cal-legend">
