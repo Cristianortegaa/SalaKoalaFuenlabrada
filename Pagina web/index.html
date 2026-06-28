@@ -263,48 +263,119 @@
 <section id="reservas" class="animado fade-up">
   <div class="container">
     <h2>Calendario de Reservas</h2>
-    <div class="calendar-carousel">
-  <div class="calendar-slide active">
-    <img src="img/calendario/mayo.png" alt="Mayo 2025">
-  </div>
-  <div class="calendar-slide">
-    <img src="img/calendario/junio.png" alt="Junio 2025">
-  </div>
-  <div class="calendar-slide">
-    <img src="img/calendario/julio.png" alt="Julio 2025">
-  </div> 
-  <div class="calendar-slide">
-    <img src="img/calendario/agosto.png" alt="Agosto 2025">
-  </div>
-  <div class="calendar-slide">
-    <img src="img/calendario/septiembre.png" alt="Septiembre 2025">
-  </div>
-  <div class="calendar-slide">
-    <img src="img/calendario/octubre.png" alt="Octubre 2025">
-  </div>
-  <div class="calendar-slide">
-    <img src="img/calendario/noviembre.png" alt="Noviembre 2025">     
-  </div>
-  <div class="calendar-slide">
-    <img src="img/calendario/diciembre.png" alt="Diciembre 2025">
-  </div>
 
-  <!-- Flechas -->
-  <a class="calendar-prev">&#10094;</a>
-  <a class="calendar-next">&#10095;</a>
+    <div class="res-cal-wrapper">
+      <div class="res-cal-header">
+        <button class="res-cal-nav" id="res-prev">&#10094;</button>
+        <span id="res-month-title">Cargando...</span>
+        <button class="res-cal-nav" id="res-next">&#10095;</button>
+      </div>
+      <div class="res-cal-grid" id="res-cal-grid">
+        <div class="res-cal-day-name">Lun</div>
+        <div class="res-cal-day-name">Mar</div>
+        <div class="res-cal-day-name">Mié</div>
+        <div class="res-cal-day-name">Jue</div>
+        <div class="res-cal-day-name">Vie</div>
+        <div class="res-cal-day-name">Sáb</div>
+        <div class="res-cal-day-name">Dom</div>
+      </div>
+    </div>
 
-  <!-- Puntos -->
-  <div class="calendar-dots"></div>
-</div>
+    <div class="res-cal-legend">
+      <div class="res-cal-legend-item">
+        <div class="res-cal-legend-box manana"></div>
+        <span>Ocupado Mañana</span>
+      </div>
+      <div class="res-cal-legend-item">
+        <div class="res-cal-legend-box tarde"></div>
+        <span>Ocupado Tarde</span>
+      </div>
+      <div class="res-cal-legend-item">
+        <div class="res-cal-legend-box completo"></div>
+        <span>Ocupado Día Completo</span>
+      </div>
+    </div>
 
-
-    <img src="img/calendario/leyenda.png" alt="Leyenda del calendario - Ocupado Mañana, Ocupado Tarde, Ocupado Día Completo" class="calendar-legend-img" loading="lazy"/>
+    <p><strong>Para reservar escríbenos por WhatsApp ⬇️</strong></p><br>
+    <a href="https://wa.me/34643522826" class="btn-gradient animado bounce-in">
+        <i class="fa-brands fa-whatsapp"></i> Escríbenos por WhatsApp
+    </a>
   </div>
 </section>
-  <p><strong>Para reservar escribanos por WhatsApp ⬇️</strong></p><br>
-  <a href="https://wa.me/34643522826" class="btn-gradient animado bounce-in">
-      <i class="fa-brands fa-whatsapp"></i> Escríbenos por WhatsApp
-  </a>
+
+<script>
+(function () {
+  // ID del calendario de Google — no tocar
+  var CAL_ID = '89cb0f35949f0569591c4afa6a52c3d63a7ba140c727da7f25b38d7df20ffea1@group.calendar.google.com';
+  var ICAL  = 'https://calendar.google.com/calendar/ical/' + encodeURIComponent(CAL_ID) + '/public/basic.ics';
+  var PROXY = 'https://corsproxy.io/?';
+
+  var occupied = {};
+  var year  = new Date().getFullYear();
+  var month = new Date().getMonth(); // 0-indexed
+  var MESES = ['Enero','Febrero','Marzo','Abril','Mayo','Junio',
+                'Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+
+  function pad(n) { return n < 10 ? '0' + n : '' + n; }
+
+  function parseIcal(text) {
+    var res = {};
+    var blocks = text.split('BEGIN:VEVENT');
+    for (var i = 1; i < blocks.length; i++) {
+      var b  = blocks[i];
+      var dm = b.match(/DTSTART[^:]*:(\d{8})/);
+      var sm = b.match(/SUMMARY[^:]*:([^\r\n]+)/);
+      if (!dm || !sm) continue;
+      var sum  = sm[1].trim().toLowerCase();
+      var type = null;
+      if (sum.indexOf('ma') === 0 || sum.indexOf('mañana') >= 0) type = 'manana';
+      else if (sum.indexOf('tarde') >= 0)                         type = 'tarde';
+      else if (sum.indexOf('completo') >= 0)                      type = 'completo';
+      if (type) res[dm[1]] = type;
+    }
+    return res;
+  }
+
+  function render() {
+    document.getElementById('res-month-title').textContent = MESES[month] + ' ' + year;
+    var grid  = document.getElementById('res-cal-grid');
+    var cells = grid.querySelectorAll('.res-cal-cell');
+    for (var i = 0; i < cells.length; i++) cells[i].remove();
+
+    var firstDay = new Date(year, month, 1).getDay();
+    var offset   = firstDay === 0 ? 6 : firstDay - 1;
+    var days     = new Date(year, month + 1, 0).getDate();
+
+    for (var e = 0; e < offset; e++) {
+      var empty = document.createElement('div');
+      empty.className = 'res-cal-cell empty';
+      grid.appendChild(empty);
+    }
+    for (var d = 1; d <= days; d++) {
+      var key  = '' + year + pad(month + 1) + pad(d);
+      var type = occupied[key];
+      var cell = document.createElement('div');
+      cell.className = 'res-cal-cell' + (type ? ' occupied-' + type : '');
+      cell.textContent = d;
+      grid.appendChild(cell);
+    }
+  }
+
+  document.getElementById('res-prev').addEventListener('click', function () {
+    month--; if (month < 0)  { month = 11; year--; } render();
+  });
+  document.getElementById('res-next').addEventListener('click', function () {
+    month++; if (month > 11) { month = 0;  year++; } render();
+  });
+
+  render(); // muestra estructura inmediatamente
+
+  fetch(PROXY + encodeURIComponent(ICAL))
+    .then(function (r) { return r.text(); })
+    .then(function (t) { occupied = parseIcal(t); render(); })
+    .catch(function () { /* calendario visible aunque falle la carga */ });
+})();
+</script>
 
   <!-- ☎️ CONTACTO -->
   <section id="contacto" class="animado slide-right">

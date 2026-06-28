@@ -509,118 +509,126 @@ tbody tr:nth-child(even) {
    CALENDARIO DE RESERVAS
 ========================= */
 
-/* 📅 Contenedor principal */
-#calendar {
+.res-cal-wrapper {
   max-width: 900px;
-  margin: 3rem auto;
-  padding: 20px;
-  border-radius: 20px;
-  font-family: 'Nunito', sans-serif;
-}
-
-#calendar img {
-  width: 100%; 
-  height: auto; 
-  display: block;
-  margin: 0 auto; 
-}
-.calendar-carousel {
-  position: relative;
-  max-width: 1000px;
-  margin: auto;
+  margin: 1.5rem auto 0;
+  background: #8aab87;
+  border-radius: 12px;
   overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
 }
 
-.calendar-slide {
-  display: none;
+.res-cal-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  padding: 1.5rem 1rem;
+  color: #f5f0e8;
+}
+
+.res-cal-header span {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  min-width: 230px;
   text-align: center;
-  animation: fadeEffect 0.6s ease;
 }
 
-@keyframes fadeEffect {
-  from { opacity: 0.4; transform: scale(0.98); }
-  to { opacity: 1; transform: scale(1); }
-}
-
-.calendar-slide.active {
-  display: block;
-}
-
-.calendar-slide img {
-  width: 100%;
-  border-radius: 8px;
-}
-
-.calendar-prev, .calendar-next {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 28px;
-  color: black;
-  padding: 8px;
+.res-cal-nav {
+  background: none;
+  border: none;
+  color: #f5f0e8;
+  font-size: 1.6rem;
   cursor: pointer;
-  user-select: none;
+  padding: 0.2rem 0.8rem;
+  border-radius: 6px;
+  transition: background 0.2s;
+  line-height: 1;
 }
 
-.calendar-prev { left: 10px; }
-.calendar-next { right: 10px; }
+.res-cal-nav:hover { background: rgba(255,255,255,0.2); }
 
-.calendar-dots {
+.res-cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.res-cal-day-name {
+  padding: 0.6rem 0.3rem;
+  color: #f5f0e8;
+  font-weight: 700;
+  font-size: 0.9rem;
   text-align: center;
-  margin-top: 10px;
+  background: #7a9e78;
+  border: 1px solid rgba(255,255,255,0.1);
 }
 
-.calendar-dots .dot {
-  height: 12px;
-  width: 12px;
-  margin: 0 4px;
-  background-color: #bbb;
-  border-radius: 50%;
-  display: inline-block;
-  cursor: pointer;
-}
-
-.calendar-dots .dot.active {
-  background-color: #000;
-}
-
-
-/* Tablets (ancho entre 768px y 1024px) */
-@media (max-width: 1024px) {
-  #calendar {
-    padding: 15px;
-  }
-
-  #calendar img {
-    max-width: 100%; /* reducimos la imagen */
-  }
-}
-
-/* Móviles (ancho menor a 768px) */
-@media (max-width: 767px) {
-  #calendar {
-    margin: 2rem auto;
-    padding: 5px;
-  }
-
-  .calendar-carousel {
-    width: calc(100% + 30px);
-    margin-left: -15px;
-  }
-}
-
-
-/* 🧭 Leyenda visual */
-.calendar-legend-img {
-  display: block;
-  max-width: 600px;
-  margin: 3rem auto;
-  height: auto;
-  border-radius: 15px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  padding: 5px;
+.res-cal-cell {
   background: #fff;
+  border: 1px solid #e8e0d4;
+  min-height: 72px;
+  padding: 0.4rem 0.5rem;
+  font-size: 0.95rem;
+  color: #4b4b4b;
+  font-weight: 600;
+}
+
+.res-cal-cell.empty {
+  background: rgba(255,255,255,0.15);
+  border-color: rgba(255,255,255,0.1);
+}
+
+/* Mañana: triángulo arriba-izquierda */
+.res-cal-cell.occupied-manana {
+  background: linear-gradient(to bottom right, #c9b89a 50%, #fff 50%);
+}
+
+/* Tarde: triángulo abajo-derecha */
+.res-cal-cell.occupied-tarde {
+  background: linear-gradient(to top left, #c9b89a 50%, #fff 50%);
+}
+
+/* Día completo */
+.res-cal-cell.occupied-completo {
+  background: #c9b89a;
+}
+
+/* Leyenda */
+.res-cal-legend {
+  display: flex;
+  justify-content: center;
+  gap: 2.5rem;
+  margin: 1.5rem 0 2rem;
+  flex-wrap: wrap;
+}
+
+.res-cal-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.95rem;
+  color: #4b4b4b;
+}
+
+.res-cal-legend-box {
+  width: 32px;
+  height: 32px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+.res-cal-legend-box.manana { background: linear-gradient(to bottom right, #c9b89a 50%, #fff 50%); }
+.res-cal-legend-box.tarde  { background: linear-gradient(to top left,     #c9b89a 50%, #fff 50%); }
+.res-cal-legend-box.completo { background: #c9b89a; }
+
+@media (max-width: 768px) {
+  .res-cal-header span { font-size: 1.3rem; min-width: 160px; }
+  .res-cal-cell { min-height: 44px; font-size: 0.78rem; padding: 0.3rem 0.2rem; }
+  .res-cal-day-name { font-size: 0.7rem; padding: 0.4rem 0.1rem; }
+  .res-cal-legend { gap: 1.2rem; }
+  .res-cal-legend-box { width: 24px; height: 24px; }
 }
 
 /* 📩 Botón de WhatsApp */
