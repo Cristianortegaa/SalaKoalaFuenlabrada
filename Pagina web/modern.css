@@ -640,15 +640,45 @@ tbody tr:nth-child(even) {
 .res-cal-legend-box.tarde   { background: linear-gradient(to top left,     #c8b89a 50%, #fff 50%); }
 .res-cal-legend-box.completo { background: #c8b89a; }
 
-/* Responsive móvil */
-@media (max-width: 768px) {
-  .res-cal-arrow { font-size: 1.5rem; padding: 0 0.4rem; }
-  .res-cal-month { font-size: 1.8rem; padding: 1rem 0.5rem 0.6rem; }
-  .res-cal-cell { min-height: 48px; font-size: 0.78rem; padding: 0.2rem 0.3rem; }
-  .res-cal-day-name { font-size: 0.68rem; padding: 0.45rem 0.1rem; }
-  .res-cal-legend { gap: 1rem; padding: 1rem 1.2rem; }
-  .res-cal-legend-box { width: 36px; height: 28px; }
-  .res-cal-legend-item { font-size: 0.82rem; }
+/* ── Tablet ── */
+@media (max-width: 900px) {
+  .res-cal-month { font-size: 2.2rem; }
+  .res-cal-cell  { min-height: 75px; }
+}
+
+/* ── Móvil ── */
+@media (max-width: 600px) {
+  .res-cal-outer  { margin: 1rem auto 0; }
+  .res-cal-arrow  { font-size: 1.5rem; padding: 0 0.5rem; min-width: 36px; }
+  .res-cal-month  { font-size: 1.5rem; padding: 0.9rem 0.5rem 0.5rem; letter-spacing: 0; }
+  .res-cal-cell   { min-height: 52px; font-size: 0.82rem; padding: 0.2rem 0.3rem; }
+
+  /* Nombres de día abreviados en móvil mediante data-short */
+  .res-cal-day-name { font-size: 0; padding: 0; }
+  .res-cal-day-name::after {
+    content: attr(data-short);
+    display: block;
+    font-size: 0.72rem;
+    padding: 0.45rem 0.1rem;
+  }
+
+  .res-cal-legend {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.8rem;
+    padding: 1rem 1.5rem;
+    max-width: 260px;
+  }
+  .res-cal-legend-box  { width: 40px; height: 30px; }
+  .res-cal-legend-item { font-size: 0.85rem; }
+}
+
+/* ── Móvil pequeño ── */
+@media (max-width: 380px) {
+  .res-cal-arrow { font-size: 1.2rem; padding: 0 0.3rem; min-width: 28px; }
+  .res-cal-month { font-size: 1.2rem; }
+  .res-cal-cell  { min-height: 42px; font-size: 0.72rem; }
+  .res-cal-day-name::after { font-size: 0.62rem; }
 }
 
 /* 📩 Botón de WhatsApp */
