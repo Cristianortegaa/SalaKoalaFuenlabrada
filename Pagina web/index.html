@@ -305,36 +305,16 @@
 
 <script>
 (function () {
-  // ID del calendario de Google — no tocar
-  var CAL_ID = '89cb0f35949f0569591c4afa6a52c3d63a7ba140c727da7f25b38d7df20ffea1@group.calendar.google.com';
-  var ICAL  = 'https://calendar.google.com/calendar/ical/' + encodeURIComponent(CAL_ID) + '/public/basic.ics';
-  var PROXY = 'https://corsproxy.io/?';
+  // Google Apps Script — no tocar
+  var API = 'https://script.google.com/macros/s/AKfycbyVvoFvJW-EGbOvTobhOQCzOy80ypH3xvNPCKKVlm50JjpYsiEMsQKmXKPnBR7aqbw/exec';
 
   var occupied = {};
   var year  = new Date().getFullYear();
-  var month = new Date().getMonth(); // 0-indexed
+  var month = new Date().getMonth();
   var MESES = ['Enero','Febrero','Marzo','Abril','Mayo','Junio',
                 'Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
 
   function pad(n) { return n < 10 ? '0' + n : '' + n; }
-
-  function parseIcal(text) {
-    var res = {};
-    var blocks = text.split('BEGIN:VEVENT');
-    for (var i = 1; i < blocks.length; i++) {
-      var b  = blocks[i];
-      var dm = b.match(/DTSTART[^:]*:(\d{8})/);
-      var sm = b.match(/SUMMARY[^:]*:([^\r\n]+)/);
-      if (!dm || !sm) continue;
-      var sum  = sm[1].trim().toLowerCase();
-      var type = null;
-      if (sum.indexOf('ma') === 0 || sum.indexOf('mañana') >= 0) type = 'manana';
-      else if (sum.indexOf('tarde') >= 0)                         type = 'tarde';
-      else if (sum.indexOf('completo') >= 0)                      type = 'completo';
-      if (type) res[dm[1]] = type;
-    }
-    return res;
-  }
 
   function render() {
     document.getElementById('res-month-title').textContent = MESES[month] + ' ' + year;
@@ -370,10 +350,10 @@
 
   render(); // muestra estructura inmediatamente
 
-  fetch(PROXY + encodeURIComponent(ICAL))
-    .then(function (r) { return r.text(); })
-    .then(function (t) { occupied = parseIcal(t); render(); })
-    .catch(function () { /* calendario visible aunque falle la carga */ });
+  fetch(API)
+    .then(function(r) { return r.json(); })
+    .then(function(data) { occupied = data; render(); })
+    .catch(function(e) { console.warn('Error cargando reservas:', e); });
 })();
 </script>
 
